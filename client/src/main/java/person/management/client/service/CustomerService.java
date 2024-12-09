@@ -17,7 +17,7 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
     private final PersonRepository personRepository;
 
-    // Método para obtener todos los clientes 
+
     public Flux<Customer> getAll() { 
         return Flux.fromIterable(customerRepository.findAll()); 
     }
@@ -29,7 +29,6 @@ public class CustomerService {
     }
 
     public Mono<Object> create(Customer customer) {
-        // Verificar si la persona existe
         return Mono.justOrEmpty(personRepository.findById(customer.getIdentification()))
             .flatMap(existingPerson -> {
                 // Verificar si ya existe un cliente con la misma identificación
